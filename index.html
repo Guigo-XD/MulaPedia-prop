@@ -27,7 +27,6 @@
     }
     a { color: inherit; text-decoration: none; cursor: pointer; }
 
-    /* Header */
     .header {
       background: #070b14;
       border-bottom: 1px solid var(--border);
@@ -39,11 +38,7 @@
       top: 0;
       z-index: 100;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .logo { display: flex; align-items: center; gap: 12px; }
     .logo-icon {
       width: 44px; height: 44px;
       background: linear-gradient(135deg, #1e40af, #3b82f6);
@@ -54,9 +49,7 @@
     }
     .logo-text h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
     .logo-text span { font-size: 11px; color: var(--text-muted); display: block; }
-    .search-box {
-      flex: 1; max-width: 420px; margin: 0 32px; position: relative;
-    }
+    .search-box { flex: 1; max-width: 420px; margin: 0 32px; position: relative; }
     .search-box input {
       width: 100%; background: #1e293b; border: 1px solid #334155;
       border-radius: 8px; padding: 10px 16px 10px 40px; color: white; font-size: 14px; outline: none;
@@ -72,7 +65,6 @@
       display: flex; align-items: center; gap: 8px; cursor: pointer;
     }
 
-    /* Nav */
     .nav {
       background: #0f172a; border-bottom: 1px solid var(--border);
       padding: 0 24px; display: flex; gap: 2px; overflow-x: auto;
@@ -84,7 +76,6 @@
     .nav a:hover, .nav a.active { color: white; border-bottom-color: var(--accent); }
     .nav a.active { color: var(--accent); }
 
-    /* Layout */
     .container {
       display: grid;
       grid-template-columns: 220px 1fr 290px;
@@ -94,7 +85,6 @@
       padding: 24px;
     }
 
-    /* Left Sidebar */
     .sidebar-left {
       background: var(--bg-sidebar);
       border-radius: 12px;
@@ -115,10 +105,8 @@
     .sidebar-left a:hover { background: #1e293b; color: var(--accent); }
     .sidebar-left .icon { width: 20px; text-align: center; opacity: 0.85; }
 
-    /* Main */
     .main { display: flex; flex-direction: column; gap: 28px; }
 
-    /* Hero */
     .hero {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 45%, #0f172a 100%);
       border-radius: 16px;
@@ -152,7 +140,6 @@
     }
     .hero-tags span { display: block; opacity: 0.95; }
 
-    /* Section */
     .section-header {
       display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
     }
@@ -162,10 +149,7 @@
     .section-header a { color: var(--accent); font-size: 13px; }
     .section-header a:hover { text-decoration: underline; }
 
-    /* Cards */
-    .cards-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    }
+    .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .card {
       background: var(--bg-card);
       border-radius: 12px;
@@ -175,14 +159,8 @@
       cursor: pointer;
     }
     .card:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .card-img {
-      height: 120px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .card-img img {
-      width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
-    }
+    .card-img { height: 120px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
     .card-body { padding: 16px; }
     .card-body h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
     .card-body p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; min-height: 42px; }
@@ -192,10 +170,7 @@
     }
     .card-links a:hover { color: var(--accent-hover); }
 
-    /* Articles */
-    .articles-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    }
+    .articles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .article-card {
       background: var(--bg-card);
       border-radius: 12px;
@@ -205,19 +180,13 @@
       cursor: pointer;
     }
     .article-card:hover { transform: translateY(-3px); }
-    .article-img {
-      height: 100px;
-      overflow: hidden;
-    }
-    .article-img img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
+    .article-img { height: 100px; overflow: hidden; }
+    .article-img img { width: 100%; height: 100%; object-fit: cover; }
     .article-body { padding: 14px; }
     .article-body h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
     .article-body p { font-size: 12px; color: var(--text-muted); }
     .article-date { font-size: 11px; color: #64748b; margin-top: 8px; }
 
-    /* Right Sidebar */
     .sidebar-right { display: flex; flex-direction: column; gap: 20px; }
     .widget {
       background: var(--bg-card);
@@ -229,9 +198,7 @@
       font-size: 14px; font-weight: 700; margin-bottom: 14px;
       display: flex; align-items: center; gap: 8px;
     }
-    .widget-title a {
-      margin-left: auto; font-size: 12px; color: var(--accent); font-weight: 500;
-    }
+    .widget-title a { margin-left: auto; font-size: 12px; color: var(--accent); font-weight: 500; }
     .match-item, .pop-item, .update-item {
       display: flex; align-items: center; gap: 10px;
       padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
@@ -252,15 +219,14 @@
     }
     .pop-views { color: var(--text-muted); font-size: 11px; }
 
-    /* Content Pages */
     .page { display: none; }
     .page.active { display: block; }
     .content-page {
       background: var(--bg-card);
       border-radius: 16px;
-      padding: 32px;
+      padding: 32px 40px;
       border: 1px solid var(--border);
-      max-width: 900px;
+      max-width: 920px;
     }
     .content-page h1 {
       font-size: 32px;
@@ -278,8 +244,16 @@
     .content-page h2 {
       font-size: 20px;
       font-weight: 700;
-      margin: 28px 0 12px;
+      margin: 32px 0 14px;
       color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .content-page h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 20px 0 10px;
+      color: #e2e8f0;
     }
     .content-page p, .content-page li {
       font-size: 15px;
@@ -287,7 +261,7 @@
       margin-bottom: 12px;
       line-height: 1.7;
     }
-    .content-page ul { padding-left: 20px; margin-bottom: 16px; }
+    .content-page ul, .content-page ol { padding-left: 22px; margin-bottom: 16px; }
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -305,13 +279,14 @@
       padding: 16px 20px;
       border-radius: 0 8px 8px 0;
       margin: 20px 0;
+      font-size: 14px;
     }
     .info-box strong { color: var(--gold); }
     .timeline-item {
       display: flex;
       gap: 16px;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--border);
     }
     .timeline-year {
@@ -320,8 +295,13 @@
       color: var(--accent);
       font-size: 15px;
     }
+    .highlight {
+      background: rgba(59,130,246,0.12);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #93c5fd;
+    }
 
-    /* Footer */
     .footer {
       background: #070b14;
       border-top: 1px solid var(--border);
@@ -342,7 +322,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header class="header">
     <a href="#" class="logo" onclick="showPage('home')">
       <div class="logo-icon">🫏</div>
@@ -360,7 +339,6 @@
     </button>
   </header>
 
-  <!-- Navigation -->
   <nav class="nav">
     <a href="#" class="nav-link active" data-page="home" onclick="showPage('home')">🏠 Início</a>
     <a href="#" class="nav-link" data-page="g3x" onclick="showPage('g3x')">🎮 G3X</a>
@@ -373,7 +351,6 @@
 
   <div class="container">
 
-    <!-- Left Sidebar -->
     <aside class="sidebar-left">
       <div class="sidebar-title">🧭 Explorar a Tribo</div>
       <a href="#" onclick="showPage('g3x')"><span class="icon">📜</span> Histórico</a>
@@ -397,10 +374,9 @@
       </div>
     </aside>
 
-    <!-- Main Content Area -->
     <main class="main">
 
-      <!-- ==================== HOME ==================== -->
+      <!-- HOME -->
       <div id="page-home" class="page active">
         <section class="hero">
           <div class="hero-mascot">🫏</div>
@@ -436,7 +412,6 @@
                 </div>
               </div>
             </div>
-
             <div class="card" onclick="showPage('kings')">
               <div class="card-img" style="background:linear-gradient(135deg,#14532d,#1e3a8a);">
                 <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=400&h=200&fit=crop" alt="Kings League">
@@ -451,7 +426,6 @@
                 </div>
               </div>
             </div>
-
             <div class="card" onclick="showPage('cs2')">
               <div class="card-img" style="background:linear-gradient(135deg,#1e3a8a,#0f172a);">
                 <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=200&fit=crop" alt="CS2">
@@ -466,7 +440,6 @@
                 </div>
               </div>
             </div>
-
             <div class="card" onclick="showPage('universo')">
               <div class="card-img" style="background:linear-gradient(135deg,#312e81,#1e1b4b);">
                 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=200&fit=crop" alt="Universo da Tribo">
@@ -534,189 +507,282 @@
         </section>
       </div>
 
-      <!-- ==================== G3X ==================== -->
+      <!-- ==================== G3X EXPANDIDO ==================== -->
       <div id="page-g3x" class="page">
         <div class="content-page">
           <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
           <h1>🎮 G3X</h1>
-          <p class="subtitle">O time que nasceu da Tribo e leva o nome do Gaules</p>
+          <p class="subtitle">O time que nasceu da Tribo e leva o nome do Gaules — do Counter-Strike 1.6 ao título mundial de fut7</p>
 
           <div class="info-box">
-            <strong>Fundação:</strong> 27 de julho de 2001 (CS 1.6) · <strong>Presidência atual:</strong> Gaules + Kelvin Oliveira (K9)<br>
-            <strong>Maior título:</strong> Campeão da Kings World Cup Clubs 2026 (Milão)
+            <strong>Nome completo:</strong> g3nerationX / G3X FC<br>
+            <strong>Fundação:</strong> 27 de julho de 2001 (CS 1.6)<br>
+            <strong>Presidentes atuais:</strong> Alexandre “Gaules” Borba + Kelvin Oliveira (K9)<br>
+            <strong>Técnico:</strong> Victor “Velho Vamp” Taube<br>
+            <strong>Maior título:</strong> Campeão da Kings World Cup Clubs 2026 (Milão, Itália)
           </div>
 
-          <h2>História</h2>
+          <h2>Linha do Tempo Completa</h2>
+
           <div class="timeline-item">
             <div class="timeline-year">2001</div>
             <div>
-              <p>Alexandre “Gaules” Borba funda a <strong>g3nerationX (g3x)</strong> junto com VIP, crash, Mee e Feijaum. No mesmo ano conquistam a vaga para o World Cyber Games em Seul e terminam em 7º-8º lugar.</p>
+              <p>Gaules cria a <strong>g3nerationX</strong> após não ser mantido na equipe da lan house Monkey. Primeiro elenco: Gaules, Igor “VIP”, Rodrigo “crash”, Mee e Feijaum. No mesmo ano conquistam o WCG Brasil e representam o país no World Cyber Games em Seul, terminando em 7º-8º lugar mundial.</p>
             </div>
           </div>
+
           <div class="timeline-item">
-            <div class="timeline-year">2007</div>
+            <div class="timeline-year">2001-2003</div>
             <div>
-              <p>Gaules se aposenta como jogador e vira técnico da MIBR, conquistando o primeiro título mundial de um time brasileiro de CS (DreamHack Winter 2007).</p>
+              <p>Período de hegemonia nacional. Segundo relatos da época, a g3x ficou quase dois anos sem perder uma partida no cenário brasileiro de CS 1.6.</p>
             </div>
           </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2006-2007</div>
+            <div>
+              <p>Projeto original encerra por falta de apoio financeiro. Gaules se aposenta como jogador e assume como técnico da MIBR. Em dezembro de 2007 conquista o <span class="highlight">primeiro título mundial de um time brasileiro de Counter-Strike</span> (DreamHack Winter 2007).</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2015-2019</div>
+            <div>
+              <p>Retornos pontuais ao competitivo de CS:GO, incluindo passagens pela Liga Amadora da Gamers Club.</p>
+            </div>
+          </div>
+
           <div class="timeline-item">
             <div class="timeline-year">2024</div>
             <div>
-              <p>Gaules anuncia o retorno do nome G3X no futebol 7 para a Kings League. Kelvin Oliveira entra como presidente e wildcard.</p>
+              <p>Gaules anuncia o <strong>G3X FC</strong> para a Kings League. Kelvin Oliveira entra como presidente e wildcard. Estreia histórica com goleada e chega à final do primeiro Mundial de Clubes (vice-campeão).</p>
             </div>
           </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div>
+              <p>Disputa a primeira edição da Kings League Brasil. Chega a finais de split e se consolida como um dos times mais populares da competição.</p>
+            </div>
+          </div>
+
           <div class="timeline-item">
             <div class="timeline-year">2026</div>
             <div>
-              <p><strong>G3X FC conquista o título mundial</strong> da Kings World Cup Clubs em Milão, derrotando o Alpak FC por 9×5. Kelvin Oliveira foi o artilheiro do torneio com 14 gols. Campanha invicta (5 vitórias).</p>
+              <p><strong>1º de agosto — Título Mundial.</strong> Em Milão, o G3X FC derrota o Alpak FC por 9×5 na final da Kings World Cup Clubs. Campanha 100% invicta (5 vitórias). Kelvin Oliveira é o artilheiro do torneio com 14 gols. Andreas Vaz eleito melhor jogador.</p>
             </div>
           </div>
 
-          <h2>Elenco destaque (Kings Cup Brazil 2026)</h2>
+          <h2>Elenco e Estrutura (Kings Cup Brazil 2026)</h2>
+          <p>Após o Draft de outubro de 2026, o G3X FC montou um elenco reforçado:</p>
           <ul>
-            <li><strong>Presidentes:</strong> Gaules e Kelvin Oliveira</li>
-            <li><strong>Técnico:</strong> Velho Vamp (Victor Taube)</li>
-            <li><strong>Principais nomes:</strong> Andreas Vaz, Aleix Martí, Danilo Silva, Wembley, Gabriel Braga e outros do Draft de outubro 2026</li>
+            <li><strong>Presidentes:</strong> Gaules e Kelvin Oliveira (K9 — afastado temporariamente por cirurgia no quadril)</li>
+            <li><strong>Comissão técnica:</strong> Velho Vamp (técnico) e Ale Apoka (auxiliar)</li>
+            <li><strong>Destaques do elenco:</strong> Andreas Vaz, Aleix Martí (artilheiro da Kings League Spain), Danilo Silva, Wembley, Gabriel Braga, Josildo Barata, Marcelo Vilella, Dudu Barbosa, entre outros</li>
           </ul>
 
-          <h2>Principais títulos</h2>
+          <h2>Principais Conquistas</h2>
           <ul>
-            <li>🏆 Kings World Cup Clubs 2026 (Campeão Mundial)</li>
-            <li>Vice-campeão Kings World Cup Clubs 2024</li>
-            <li>Finalista Split da Kings League Brasil</li>
+            <li>🏆 <strong>Campeão Kings World Cup Clubs 2026</strong> (primeiro time brasileiro campeão mundial da liga)</li>
+            <li>🥈 Vice-campeão Kings World Cup Clubs 2024</li>
+            <li>🥈 Finalista de splits da Kings League Brasil</li>
+            <li>🏆 WCG Brasil 2001 (classificação para o mundial)</li>
+            <li>Vários títulos nacionais no CS 1.6 entre 2001-2003</li>
           </ul>
+
+          <h2>Identidade</h2>
+          <p>O G3X carrega o lema <strong>“Nós somos o impossível”</strong> e representa diretamente a Tribo. É conhecido como “o time do povo” por ter nascido da comunidade e manter a conexão constante com os fãs.</p>
         </div>
       </div>
 
-      <!-- ==================== KINGS LEAGUE ==================== -->
+      <!-- ==================== KINGS LEAGUE EXPANDIDO ==================== -->
       <div id="page-kings" class="page">
         <div class="content-page">
           <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
           <h1>👑 Kings League</h1>
-          <p class="subtitle">Futebol 7, entretenimento e muita resenha</p>
+          <p class="subtitle">Futebol 7 + entretenimento + regras malucas — a liga que a Tribo adotou</p>
 
           <div class="info-box">
-            Criada por Gerard Piqué. No Brasil conta com times de streamers e personalidades (G3X, FURIA, Fluxo, LOUD, DesimpaiN, Capim, etc.).
+            Criada por Gerard Piqué. Formato de fut7 com elementos de show: cartões especiais, pênalti do presidente, shootouts, gol duplo e regras que mudam o jogo a qualquer momento.
           </div>
 
-          <h2>O que é a Kings League?</h2>
-          <p>Liga de futebol 7 que mistura competição real com elementos de entretenimento: cartões especiais, pênaltis de presidente, shootouts e regras únicas que tornam cada partida imprevisível e divertida.</p>
+          <h2>Como funciona</h2>
+          <p>Partidas de 40 minutos (dois tempos de 20). Cada time tem 7 jogadores em campo + reservas. O presidente pode intervir em momentos-chave (pênalti especial, por exemplo). Existem cartões que ativam poderes temporários e o famoso “matchball” no final.</p>
 
-          <h2>G3X na Kings League</h2>
+          <h3>Principais regras especiais</h3>
           <ul>
-            <li><strong>2024:</strong> Estreia na Kings League Américas e chega à final do Mundial de Clubes (vice-campeão).</li>
-            <li><strong>2025:</strong> Disputa a Kings League Brasil (finalista de splits).</li>
-            <li><strong>2026:</strong> Campeão invicto da Kings World Cup Clubs em Milão (9×5 Alpak FC). Kelvin Oliveira artilheiro com 14 gols. Andreas Vaz eleito melhor jogador.</li>
+            <li><strong>Pênalti do Presidente:</strong> o presidente do clube pode cobrar um pênalti em momentos definidos.</li>
+            <li><strong>Shootout:</strong> disputa de pênaltis estilo 1x1 em situações específicas.</li>
+            <li><strong>Gol Duplo:</strong> em alguns momentos o gol vale dois.</li>
+            <li><strong>Cartões especiais:</strong> ativam vantagens táticas ou de tempo.</li>
           </ul>
 
+          <h2>G3X FC na Kings League — Campanha Histórica</h2>
+
+          <h3>2024 — Estreia e vice-campeonato mundial</h3>
+          <p>Primeira participação. Chegou à final do inaugural Kings World Cup Clubs e ficou com o vice.</p>
+
+          <h3>2025 — Kings League Brasil</h3>
+          <p>Um dos times mais fortes e populares da competição nacional. Chegou a finais de split e consolidou a base de torcedores da Tribo.</p>
+
+          <h3>2026 — Campeão Mundial</h3>
+          <p>Campanha perfeita na Kings World Cup Clubs em Milão:</p>
+          <ul>
+            <li>Fase de grupos e mata-mata: 5 vitórias em 5 jogos</li>
+            <li>Semifinal: 8×2 no Ultimate Móstoles</li>
+            <li>Final: 9×5 no Alpak FC (time da casa)</li>
+            <li>Kelvin Oliveira: artilheiro do torneio com 14 gols</li>
+            <li>Andreas Vaz: melhor jogador da competição</li>
+          </ul>
+          <p>Foi o <strong>primeiro título mundial de um clube brasileiro</strong> na história da Kings League.</p>
+
           <h2>Kings Cup Brazil 2026</h2>
-          <p>Competição que começa em 19 de outubro de 2026. G3X FC completou o elenco no Draft de 3 de outubro, incluindo o espanhol Aleix Martí (artilheiro da Kings League Spain).</p>
+          <p>Começa em 19 de outubro de 2026. O Draft ocorreu em 3 de outubro. O G3X FC reforçou o elenco com nomes como o espanhol Aleix Martí (artilheiro da Kings League Spain com 36 gols no último split).</p>
         </div>
       </div>
 
-      <!-- ==================== CS2 ==================== -->
+      <!-- ==================== CS2 EXPANDIDO ==================== -->
       <div id="page-cs2" class="page">
         <div class="content-page">
           <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
           <h1>🔫 Counter-Strike 2</h1>
-          <p class="subtitle">O FPS que move a Tribo</p>
+          <p class="subtitle">O jogo que deu origem a tudo — e ainda é o coração das lives da Tribo</p>
 
-          <h2>Gaules e o CS</h2>
-          <p>Gaules começou no CS 1.6 como jogador profissional, fundou a g3x, foi técnico campeão mundial com a MIBR e se tornou o maior streamer de Counter-Strike do Brasil (e um dos maiores do mundo).</p>
+          <h2>Gaules e o Counter-Strike</h2>
+          <p>Alexandre “Gaules” Borba começou a jogar profissionalmente no final dos anos 90 / início dos 2000. Fundou a g3x em 2001, disputou o WCG mundial e depois se tornou o primeiro técnico brasileiro campeão do mundo (MIBR, DreamHack Winter 2007).</p>
+          <p>A partir de 2018-2019 explodiu como streamer e se transformou no maior nome de CS do Brasil, criando a maior comunidade de esports do país.</p>
 
-          <h2>Dream Team G3X (montado por Gaules em 2026)</h2>
+          <h2>Dream Team G3X (montado por Gaules em abril 2026)</h2>
+          <p>Em podcast, Gaules montou seu time ideal brasileiro atual:</p>
           <ul>
-            <li>Gabriel “FalleN” Toledo</li>
+            <li>Gabriel “FalleN” Toledo (IGL)</li>
             <li>Kaike “KSCERATO” Cerato</li>
             <li>Felipe “insani” Yuji</li>
-            <li>Lucas “nqz” Soares</li>
+            <li>Lucas “nqz” Soares (AWP)</li>
             <li>Vinicius “n1ssim” Pereira</li>
           </ul>
 
-          <h2>Conteúdo da Tribo</h2>
-          <p>Transmissões diárias, análises, reações, guias de mapas, economia, callouts e a famosa resenha da cabine com Liminha, BT, Apoka, mch e Velho Vamp.</p>
+          <h2>A cabine da Tribo</h2>
+          <p>As transmissões do Gaules são famosas pela resenha. Nomes fixos e recorrentes:</p>
+          <ul>
+            <li>Liminha</li>
+            <li>BT (Fillipe Moreno)</li>
+            <li>Apoka</li>
+            <li>mch</li>
+            <li>Velho Vamp</li>
+            <li>Lett e muitos outros</li>
+          </ul>
+          <p>É nessa cabine que nasceram a maioria dos bordões que a Tribo usa até hoje.</p>
+
+          <h2>Conteúdo da MulaPédia sobre CS2</h2>
+          <ul>
+            <li>Guias de mapas e callouts</li>
+            <li>Economia e estratégias</li>
+            <li>História do CS brasileiro</li>
+            <li>Análises de majors e campeonatos</li>
+          </ul>
         </div>
       </div>
 
-      <!-- ==================== GAULES ==================== -->
+      <!-- ==================== GAULES EXPANDIDO ==================== -->
       <div id="page-gaules" class="page">
         <div class="content-page">
           <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
           <h1>🎙️ Gaules</h1>
-          <p class="subtitle">Alexandre Borba Chiqueta — O líder da Tribo</p>
+          <p class="subtitle">Alexandre Borba Chiqueta — O cara por trás da Tribo</p>
 
           <div class="info-box">
-            Nascido em 2 de dezembro de 1983 em São Paulo. Ex-jogador, técnico campeão mundial, maior streamer de CS do Brasil e presidente do G3X FC.
+            <strong>Nome completo:</strong> Alexandre Borba Chiqueta<br>
+            <strong>Nascimento:</strong> 2 de dezembro de 1983 — São Paulo, SP<br>
+            <strong>Conhecido como:</strong> Gaules, Gau<br>
+            <strong>Funções:</strong> Ex-jogador profissional, técnico campeão mundial, streamer, presidente do G3X FC, filantropo
           </div>
 
-          <h2>Trajetória</h2>
+          <h2>Trajetória Resumida</h2>
           <ul>
-            <li>2001: Funda a g3nerationX</li>
-            <li>2007: Técnico da MIBR — primeiro título mundial brasileiro de CS</li>
-            <li>2018+: Explode como streamer e cria a maior comunidade de esports do Brasil — a Tribo</li>
-            <li>2024: Leva o G3X para o futebol 7</li>
-            <li>2026: G3X se torna campeão mundial da Kings League</li>
+            <li><strong>Finais dos anos 90 / 2001:</strong> Início como jogador profissional de CS 1.6. Funda a g3nerationX.</li>
+            <li><strong>2001:</strong> Representa o Brasil no World Cyber Games em Seul.</li>
+            <li><strong>2007:</strong> Como técnico da MIBR, conquista o primeiro título mundial de CS de um time brasileiro.</li>
+            <li><strong>2018 em diante:</strong> Explode como streamer na Twitch e cria a maior comunidade de esports do Brasil — a Tribo.</li>
+            <li><strong>2024:</strong> Leva o nome G3X para o futebol 7 e entra na Kings League.</li>
+            <li><strong>2026:</strong> O G3X FC se torna campeão mundial da Kings League sob sua presidência.</li>
           </ul>
 
-          <h2>Lema</h2>
-          <p><strong>“Nós somos o impossível”</strong> e <strong>“A Tribo cuida da Tribo”</strong>.</p>
+          <h2>Valores e Legado</h2>
+          <p>Gaules é conhecido por transformar a comunidade em algo maior que o jogo. O lema <strong>“A Tribo cuida da Tribo”</strong> virou movimento real de solidariedade. Outro bordão forte é <strong>“Nós somos o impossível”</strong>.</p>
+          <p>Além do streaming e do G3X, já esteve envolvido em projetos de automobilismo (G3X Racing) e ações sociais.</p>
         </div>
       </div>
 
-      <!-- ==================== UNIVERSO / COMUNIDADE ==================== -->
+      <!-- ==================== UNIVERSO / COMUNIDADE EXPANDIDO ==================== -->
       <div id="page-universo" class="page">
         <div class="content-page">
           <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
           <h1>👥 Universo da Tribo</h1>
-          <p class="subtitle">Mais que um chat — uma família</p>
+          <p class="subtitle">Mais que um chat de live — a maior família do esports brasileiro</p>
 
-          <h2>A Tribo</h2>
-          <p>A maior comunidade de esports do Brasil. Nascida nas lives do Gaules, uniu milhões de pessoas em torno de valores como resiliência, empatia e união. O lema “A Tribo cuida da Tribo” virou movimento social real.</p>
+          <h2>O que é a Tribo?</h2>
+          <p>A Tribo nasceu naturalmente nas lives do Gaules. O que começou como um chat engajado virou uma comunidade com milhões de pessoas espalhadas pelo Brasil e pelo mundo. O sentimento de pertencimento é tão forte que muitos se identificam primeiro como “mula” do que como torcedor de qualquer time tradicional.</p>
 
-          <h2>Figuras da Tribo</h2>
+          <h2>Valores centrais</h2>
           <ul>
-            <li><strong>Liminha</strong> — o eterno “pede Liminha”</li>
-            <li><strong>BT (Fillipe Moreno)</strong></li>
-            <li><strong>Apoka (Ale Apoka)</strong></li>
-            <li><strong>mch</strong></li>
-            <li><strong>Lett</strong></li>
-            <li><strong>Velho Vamp</strong> (técnico do G3X FC)</li>
-            <li>E milhões de mulas pelo Brasil e pelo mundo</li>
+            <li><strong>A Tribo cuida da Tribo</strong> — solidariedade real (vaquinhas, doações, apoio em momentos difíceis)</li>
+            <li><strong>Resiliência</strong> — “Nós somos o impossível”</li>
+            <li><strong>União</strong> — independente de time, jogo ou opinião</li>
+            <li><strong>Resenha + respeito</strong> — o tom leve das lives nunca perdeu o carinho</li>
           </ul>
+
+          <h2>Figuras importantes da Tribo</h2>
+          <ul>
+            <li><strong>Liminha</strong> — o eterno “pede Liminha”, um dos rostos mais queridos</li>
+            <li><strong>BT (Fillipe Moreno)</strong> — ex-pro player e presença constante</li>
+            <li><strong>Apoka (Ale Apoka)</strong> — auxiliar técnico do G3X e figura histórica</li>
+            <li><strong>mch</strong> — veterano do CS e da cabine</li>
+            <li><strong>Lett</strong> — presença antiga e querida</li>
+            <li><strong>Velho Vamp (Victor Taube)</strong> — técnico do G3X FC</li>
+            <li><strong>Tuga da Tribo</strong> e tantos outros que saíram do chat e viraram parte da história</li>
+          </ul>
+
+          <h2>Cultura</h2>
+          <p>Memes, bordões, clips, documentários, música, solidariedade. A Tribo criou sua própria linguagem e seu próprio jeito de celebrar e de se apoiar.</p>
         </div>
       </div>
 
-      <!-- ==================== GLOSSÁRIO ==================== -->
+      <!-- ==================== GLOSSÁRIO EXPANDIDO ==================== -->
       <div id="page-glossario" class="page">
         <div class="content-page">
           <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
           <h1>📖 Glossário & Bordões da Tribo</h1>
-          <p class="subtitle">O dicionário oficial das mulas</p>
+          <p class="subtitle">O dicionário oficial que todo mula precisa conhecer</p>
 
-          <h2>Bordões clássicos</h2>
+          <h2>Bordões Principais</h2>
           <ul>
-            <li><strong>A Tribo cuida da Tribo</strong> — lema maior. Usado em doações e apoio mútuo.</li>
-            <li><strong>Nós somos o impossível</strong> — frase oficial do Gaules e do G3X.</li>
-            <li><strong>Lei de Gaules</strong> — quando um time está no match point e não consegue fechar, levando para overtime.</li>
-            <li><strong>Lei de BT</strong> — o time que está ganhando começa a jogar mal e o que está perdendo melhora.</li>
-            <li><strong>Pede, Liminha</strong> — clássico pedido de apoio da torcida.</li>
-            <li><strong>Sapo cego</strong> — expressão famosa das lives.</li>
-            <li><strong>Eles nunca vão entender</strong> — sobre quem não entende a cultura da Tribo.</li>
-            <li><strong>Empurra Liminha</strong> — incentivo para a torcida.</li>
+            <li><strong>A Tribo cuida da Tribo</strong> — o lema maior. Usado em campanhas de solidariedade e no dia a dia da comunidade.</li>
+            <li><strong>Nós somos o impossível</strong> — frase oficial do Gaules e do G3X FC.</li>
+            <li><strong>Lei de Gaules</strong> — quando um time está no match/map point e não consegue fechar, levando o jogo para overtime.</li>
+            <li><strong>Lei de BT</strong> — o time que está ganhando começa a jogar mal e o que está perdendo melhora de forma inexplicável.</li>
+            <li><strong>Pede, Liminha</strong> — clássico grito de guerra da torcida.</li>
+            <li><strong>Empurra Liminha</strong> — variação para incentivar a pressão da torcida.</li>
+            <li><strong>Sapo cego</strong> — expressão clássica das lives.</li>
+            <li><strong>Eles nunca vão entender</strong> — sobre quem está de fora e não compreende a cultura da Tribo.</li>
+            <li><strong>Aniversário do Apokão</strong> — brincadeira de que todo dia é aniversário do Apoka.</li>
           </ul>
 
-          <h2>Outros termos</h2>
+          <h2>Termos da Comunidade</h2>
           <ul>
-            <li><strong>Mula</strong> — membro da Tribo</li>
-            <li><strong>Tribonera</strong> — a casa / a live</li>
-            <li><strong>Brasileirinho</strong> — carinho com o público brasileiro</li>
+            <li><strong>Mula</strong> — membro da Tribo (o mascote é a mula de fone de ouvido).</li>
+            <li><strong>Tribonera</strong> — a live / a casa da Tribo.</li>
+            <li><strong>Brasileirinho</strong> — forma carinhosa de se referir ao público brasileiro.</li>
+            <li><strong>Cabine</strong> — o time de comentários das lives (Liminha, BT, Apoka, etc.).</li>
           </ul>
+
+          <h2>Como usar</h2>
+          <p>Esses termos nasceram organicamente nas lives e se espalharam por toda a internet brasileira. Usar um bordão da Tribo é uma forma de se identificar e de manter viva a cultura que a comunidade criou.</p>
         </div>
       </div>
 
     </main>
 
-    <!-- Right Sidebar (só aparece na home) -->
     <aside class="sidebar-right" id="right-sidebar">
       <div class="widget">
         <div class="widget-title">🔥 Em destaque</div>
@@ -771,8 +837,8 @@
         <div class="pop-item" onclick="showPage('gaules')">
           <div class="pop-number">5</div>
           <div>
-            <div>Quem é Kelvin Oliveira (K9)</div>
-            <div class="pop-views">Presidente e artilheiro</div>
+            <div>Quem é Gaules</div>
+            <div class="pop-views">Biografia completa</div>
           </div>
         </div>
       </div>
@@ -824,30 +890,22 @@
 
   <script>
     function showPage(pageId) {
-      // Esconde todas as páginas
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      
-      // Mostra a página escolhida
       const target = document.getElementById('page-' + pageId);
       if (target) target.classList.add('active');
 
-      // Atualiza nav ativa
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
         if (link.dataset.page === pageId) link.classList.add('active');
       });
 
-      // Sidebar direita só na home
       const rightSidebar = document.getElementById('right-sidebar');
       if (rightSidebar) {
         rightSidebar.style.display = (pageId === 'home') ? 'flex' : 'none';
       }
 
-      // Scroll para o topo
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Inicia na home
     showPage('home');
   </script>
 

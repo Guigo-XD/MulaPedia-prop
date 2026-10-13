@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MulaPédia — A Enciclopédia não oficial da Tribo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0f1a;
+      --bg-card: #111827;
+      --bg-sidebar: #0f172a;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --gold: #fbbf24;
+      --text: #e5e7eb;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; cursor: pointer; }
+
+    /* Header */
+    .header {
+      background: #070b14;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 15px rgba(59,130,246,0.4);
+    }
+    .logo-text h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .logo-text span { font-size: 11px; color: var(--text-muted); display: block; }
+    .search-box {
+      flex: 1; max-width: 420px; margin: 0 32px; position: relative;
+    }
+    .search-box input {
+      width: 100%; background: #1e293b; border: 1px solid #334155;
+      border-radius: 8px; padding: 10px 16px 10px 40px; color: white; font-size: 14px; outline: none;
+    }
+    .search-box input:focus { border-color: var(--accent); }
+    .search-box::before {
+      content: "🔍"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.6;
+    }
+    .tribo-btn {
+      background: linear-gradient(90deg, #1e3a8a, #1e40af);
+      border: 1px solid #3b82f6; color: white;
+      padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px;
+      display: flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+
+    /* Nav */
+    .nav {
+      background: #0f172a; border-bottom: 1px solid var(--border);
+      padding: 0 24px; display: flex; gap: 2px; overflow-x: auto;
+    }
+    .nav a {
+      color: var(--text-muted); padding: 14px 18px; font-size: 14px; font-weight: 500;
+      border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s;
+    }
+    .nav a:hover, .nav a.active { color: white; border-bottom-color: var(--accent); }
+    .nav a.active { color: var(--accent); }
+
+    /* Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 220px 1fr 290px;
+      gap: 24px;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* Left Sidebar */
+    .sidebar-left {
+      background: var(--bg-sidebar);
+      border-radius: 12px;
+      padding: 16px;
+      height: fit-content;
+      position: sticky; top: 90px;
+    }
+    .sidebar-title {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--text-muted); margin-bottom: 12px; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sidebar-left a {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--text); padding: 10px 12px; border-radius: 8px; font-size: 14px;
+      transition: background 0.2s;
+    }
+    .sidebar-left a:hover { background: #1e293b; color: var(--accent); }
+    .sidebar-left .icon { width: 20px; text-align: center; opacity: 0.85; }
+
+    /* Main */
+    .main { display: flex; flex-direction: column; gap: 28px; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 45%, #0f172a 100%);
+      border-radius: 16px;
+      padding: 36px 40px;
+      display: flex; align-items: center; gap: 32px;
+      position: relative; overflow: hidden;
+      border: 1px solid #1e40af;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; right: 0; top: 0; width: 45%; height: 100%;
+      background: radial-gradient(circle at 70% 50%, rgba(59,130,246,0.3), transparent 70%);
+    }
+    .hero-mascot {
+      width: 130px; height: 130px;
+      background: #1e293b;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 70px;
+      border: 3px solid var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 40px rgba(59,130,246,0.5);
+    }
+    .hero-content h2 { font-size: 44px; font-weight: 800; margin-bottom: 6px; }
+    .hero-content h2 span { color: var(--accent); }
+    .hero-content p { color: var(--text-muted); font-size: 16px; max-width: 420px; }
+    .hero-tags {
+      position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+      text-align: right; font-size: 18px; font-weight: 700; line-height: 1.45;
+      color: white; text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    }
+    .hero-tags span { display: block; opacity: 0.95; }
+
+    /* Section */
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    }
+    .section-header h3 {
+      font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px;
+    }
+    .section-header a { color: var(--accent); font-size: 13px; }
+    .section-header a:hover { text-decoration: underline; }
+
+    /* Cards */
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card-img {
+      height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .card-img img {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
+    }
+    .card-body { padding: 16px; }
+    .card-body h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .card-body p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; min-height: 42px; }
+    .card-links a {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--accent); font-size: 13px; padding: 3px 0;
+    }
+    .card-links a:hover { color: var(--accent-hover); }
+
+    /* Articles */
+    .articles-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .article-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .article-card:hover { transform: translateY(-3px); }
+    .article-img {
+      height: 100px;
+      overflow: hidden;
+    }
+    .article-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .article-body { padding: 14px; }
+    .article-body h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .article-body p { font-size: 12px; color: var(--text-muted); }
+    .article-date { font-size: 11px; color: #64748b; margin-top: 8px; }
+
+    /* Right Sidebar */
+    .sidebar-right { display: flex; flex-direction: column; gap: 20px; }
+    .widget {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+    .widget-title {
+      font-size: 14px; font-weight: 700; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .widget-title a {
+      margin-left: auto; font-size: 12px; color: var(--accent); font-weight: 500;
+    }
+    .match-item, .pop-item, .update-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+      cursor: pointer;
+    }
+    .match-item:hover, .pop-item:hover, .update-item:hover { color: var(--accent); }
+    .match-item:last-child, .pop-item:last-child, .update-item:last-child { border-bottom: none; }
+    .match-teams { flex: 1; font-weight: 500; }
+    .match-time { color: var(--text-muted); font-size: 12px; text-align: right; }
+    .match-icon {
+      width: 28px; height: 28px; background: #1e293b; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .pop-number {
+      width: 22px; height: 22px; background: #1e293b; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--accent);
+    }
+    .pop-views { color: var(--text-muted); font-size: 11px; }
+
+    /* Content Pages */
+    .page { display: none; }
+    .page.active { display: block; }
+    .content-page {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      max-width: 900px;
+    }
+    .content-page h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .content-page .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .content-page h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 28px 0 12px;
+      color: var(--accent);
+    }
+    .content-page p, .content-page li {
+      font-size: 15px;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    .content-page ul { padding-left: 20px; margin-bottom: 16px; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .back-btn:hover { color: var(--accent-hover); }
+    .info-box {
+      background: #1e293b;
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+    }
+    .info-box strong { color: var(--gold); }
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-year {
+      min-width: 70px;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #070b14;
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      margin-top: 48px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .footer strong { color: white; }
+
+    @media (max-width: 1100px) {
+      .container { grid-template-columns: 1fr; }
+      .sidebar-left, .sidebar-right { display: none; }
+      .cards-grid, .articles-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="#" class="logo" onclick="showPage('home')">
+      <div class="logo-icon">🫏</div>
+      <div class="logo-text">
+        <h1>MulaPédia</h1>
+        <span>Conhecimento de toda a Tribo</span>
+      </div>
+    </a>
+    <div class="search-box">
+      <input type="text" placeholder="Pesquisar na MulaPédia...">
+    </div>
+    <button class="tribo-btn" onclick="showPage('universo')">
+      👑 A Tribo
+      <span style="font-size:11px;opacity:0.8">Juntos somos mais fortes</span>
+    </button>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#" class="nav-link active" data-page="home" onclick="showPage('home')">🏠 Início</a>
+    <a href="#" class="nav-link" data-page="g3x" onclick="showPage('g3x')">🎮 G3X</a>
+    <a href="#" class="nav-link" data-page="kings" onclick="showPage('kings')">👑 Kings League</a>
+    <a href="#" class="nav-link" data-page="cs2" onclick="showPage('cs2')">🔫 Counter-Strike 2</a>
+    <a href="#" class="nav-link" data-page="gaules" onclick="showPage('gaules')">🎙️ Gaules</a>
+    <a href="#" class="nav-link" data-page="universo" onclick="showPage('universo')">👥 Comunidade</a>
+    <a href="#" class="nav-link" data-page="glossario" onclick="showPage('glossario')">📖 Glossário</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar-left">
+      <div class="sidebar-title">🧭 Explorar a Tribo</div>
+      <a href="#" onclick="showPage('g3x')"><span class="icon">📜</span> Histórico</a>
+      <a href="#" onclick="showPage('g3x')"><span class="icon">👤</span> Jogadores</a>
+      <a href="#" onclick="showPage('g3x')"><span class="icon">📋</span> Elencos</a>
+      <a href="#" onclick="showPage('kings')"><span class="icon">🏆</span> Torneios</a>
+      <a href="#" onclick="showPage('kings')"><span class="icon">📊</span> Resultados</a>
+      <a href="#" onclick="showPage('glossario')"><span class="icon">😂</span> Memes e bordões</a>
+      <a href="#" onclick="showPage('cs2')"><span class="icon">📘</span> Guias de CS2</a>
+      <a href="#" onclick="showPage('universo')"><span class="icon">❤️</span> Cultura da Tribo</a>
+
+      <div style="margin-top:32px;padding:18px;background:#1e293b;border-radius:12px;text-align:center;">
+        <div style="font-size:26px;font-weight:800;color:#60a5fa;letter-spacing:1px;">TRIBO</div>
+        <p style="font-size:12px;color:#94a3b8;margin-top:10px;line-height:1.5;">
+          É mais que um time.<br>
+          <strong style="color:#fbbf24">É uma família.</strong>
+        </p>
+        <p style="font-size:11px;color:#64748b;margin-top:10px;">
+          “A Tribo cuida da Tribo”
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main">
+
+      <!-- ==================== HOME ==================== -->
+      <div id="page-home" class="page active">
+        <section class="hero">
+          <div class="hero-mascot">🫏</div>
+          <div class="hero-content">
+            <h2>Mula<span>Pédia</span></h2>
+            <p>A enciclopédia não oficial da Tribo — G3X, Kings League, CS2, Gaules e a maior comunidade do Brasil.</p>
+          </div>
+          <div class="hero-tags">
+            <span>INFORMAÇÃO</span>
+            <span>JOGO</span>
+            <span>COMUNIDADE</span>
+            <span style="color:#fbbf24">TRIBO 👑</span>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-header">
+            <h3>⭐ Principais áreas</h3>
+            <a href="#" onclick="showPage('g3x')">Ver todas as áreas →</a>
+          </div>
+          <div class="cards-grid">
+            <div class="card" onclick="showPage('g3x')">
+              <div class="card-img" style="background:linear-gradient(135deg,#7f1d1d,#1e1b4b);">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" alt="G3X FC">
+              </div>
+              <div class="card-body">
+                <h4>G3X</h4>
+                <p>Fundado em 2001 por Gaules no CS 1.6. Hoje é o time do povo na Kings League e campeão mundial 2026.</p>
+                <div class="card-links">
+                  <a href="#" onclick="event.stopPropagation();showPage('g3x')">📄 História →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('g3x')">👥 Elenco →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('g3x')">🏆 Títulos →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" onclick="showPage('kings')">
+              <div class="card-img" style="background:linear-gradient(135deg,#14532d,#1e3a8a);">
+                <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=400&h=200&fit=crop" alt="Kings League">
+              </div>
+              <div class="card-body">
+                <h4>Kings League</h4>
+                <p>Futebol 7 + entretenimento. G3X FC foi campeão da Kings World Cup Clubs 2026 em Milão (9×5 Alpak).</p>
+                <div class="card-links">
+                  <a href="#" onclick="event.stopPropagation();showPage('kings')">📜 Regras →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('kings')">🏆 Kings Cup →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('kings')">📊 Classificação →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" onclick="showPage('cs2')">
+              <div class="card-img" style="background:linear-gradient(135deg,#1e3a8a,#0f172a);">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=200&fit=crop" alt="CS2">
+              </div>
+              <div class="card-body">
+                <h4>Counter-Strike 2</h4>
+                <p>O FPS que move a Tribo. Gaules transmite diariamente e já montou dream team com FalleN, KSCERATO e mais.</p>
+                <div class="card-links">
+                  <a href="#" onclick="event.stopPropagation();showPage('cs2')">🗺️ Mapas →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('cs2')">💰 Economia →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('cs2')">🏆 Campeonatos →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" onclick="showPage('universo')">
+              <div class="card-img" style="background:linear-gradient(135deg,#312e81,#1e1b4b);">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=200&fit=crop" alt="Universo da Tribo">
+              </div>
+              <div class="card-body">
+                <h4>Universo da Tribo</h4>
+                <p>Gaules, Liminha, BT, Apoka, Lett, Velho Vamp e milhões de mulas. Cultura, memes e “A Tribo cuida da Tribo”.</p>
+                <div class="card-links">
+                  <a href="#" onclick="event.stopPropagation();showPage('gaules')">🎙️ Gaules →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('glossario')">💬 Bordões →</a>
+                  <a href="#" onclick="event.stopPropagation();showPage('glossario')">📖 Glossário →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-header">
+            <h3>📄 Últimos artigos</h3>
+            <a href="#" onclick="showPage('g3x')">Ver todos os artigos →</a>
+          </div>
+          <div class="articles-grid">
+            <div class="article-card" onclick="showPage('g3x')">
+              <div class="article-img">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300&h=150&fit=crop" alt="História do G3X">
+              </div>
+              <div class="article-body">
+                <h5>História do G3X</h5>
+                <p>Do CS 1.6 em 2001 ao título mundial de fut7 em 2026</p>
+                <div class="article-date">Atualizado out 2026</div>
+              </div>
+            </div>
+            <div class="article-card" onclick="showPage('kings')">
+              <div class="article-img">
+                <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=300&h=150&fit=crop" alt="Kings World Cup">
+              </div>
+              <div class="article-body">
+                <h5>G3X Campeão Mundial 2026</h5>
+                <p>9×5 no Alpak em Milão — Kelvin artilheiro com 14 gols</p>
+                <div class="article-date">1 de ago de 2026</div>
+              </div>
+            </div>
+            <div class="article-card" onclick="showPage('cs2')">
+              <div class="article-img">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&h=150&fit=crop" alt="Guia CS2">
+              </div>
+              <div class="article-body">
+                <h5>Guia de Mapas do CS2</h5>
+                <p>Callouts, economia e estratégias da Tribo</p>
+                <div class="article-date">set 2026</div>
+              </div>
+            </div>
+            <div class="article-card" onclick="showPage('glossario')">
+              <div class="article-img">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=150&fit=crop" alt="Bordões">
+              </div>
+              <div class="article-body">
+                <h5>Dicionário de Bordões</h5>
+                <p>Lei de Gaules, Sapo Cego, Pede Liminha e muito mais</p>
+                <div class="article-date">mar 2026</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== G3X ==================== -->
+      <div id="page-g3x" class="page">
+        <div class="content-page">
+          <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
+          <h1>🎮 G3X</h1>
+          <p class="subtitle">O time que nasceu da Tribo e leva o nome do Gaules</p>
+
+          <div class="info-box">
+            <strong>Fundação:</strong> 27 de julho de 2001 (CS 1.6) · <strong>Presidência atual:</strong> Gaules + Kelvin Oliveira (K9)<br>
+            <strong>Maior título:</strong> Campeão da Kings World Cup Clubs 2026 (Milão)
+          </div>
+
+          <h2>História</h2>
+          <div class="timeline-item">
+            <div class="timeline-year">2001</div>
+            <div>
+              <p>Alexandre “Gaules” Borba funda a <strong>g3nerationX (g3x)</strong> junto com VIP, crash, Mee e Feijaum. No mesmo ano conquistam a vaga para o World Cyber Games em Seul e terminam em 7º-8º lugar.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2007</div>
+            <div>
+              <p>Gaules se aposenta como jogador e vira técnico da MIBR, conquistando o primeiro título mundial de um time brasileiro de CS (DreamHack Winter 2007).</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div>
+              <p>Gaules anuncia o retorno do nome G3X no futebol 7 para a Kings League. Kelvin Oliveira entra como presidente e wildcard.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2026</div>
+            <div>
+              <p><strong>G3X FC conquista o título mundial</strong> da Kings World Cup Clubs em Milão, derrotando o Alpak FC por 9×5. Kelvin Oliveira foi o artilheiro do torneio com 14 gols. Campanha invicta (5 vitórias).</p>
+            </div>
+          </div>
+
+          <h2>Elenco destaque (Kings Cup Brazil 2026)</h2>
+          <ul>
+            <li><strong>Presidentes:</strong> Gaules e Kelvin Oliveira</li>
+            <li><strong>Técnico:</strong> Velho Vamp (Victor Taube)</li>
+            <li><strong>Principais nomes:</strong> Andreas Vaz, Aleix Martí, Danilo Silva, Wembley, Gabriel Braga e outros do Draft de outubro 2026</li>
+          </ul>
+
+          <h2>Principais títulos</h2>
+          <ul>
+            <li>🏆 Kings World Cup Clubs 2026 (Campeão Mundial)</li>
+            <li>Vice-campeão Kings World Cup Clubs 2024</li>
+            <li>Finalista Split da Kings League Brasil</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ==================== KINGS LEAGUE ==================== -->
+      <div id="page-kings" class="page">
+        <div class="content-page">
+          <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
+          <h1>👑 Kings League</h1>
+          <p class="subtitle">Futebol 7, entretenimento e muita resenha</p>
+
+          <div class="info-box">
+            Criada por Gerard Piqué. No Brasil conta com times de streamers e personalidades (G3X, FURIA, Fluxo, LOUD, DesimpaiN, Capim, etc.).
+          </div>
+
+          <h2>O que é a Kings League?</h2>
+          <p>Liga de futebol 7 que mistura competição real com elementos de entretenimento: cartões especiais, pênaltis de presidente, shootouts e regras únicas que tornam cada partida imprevisível e divertida.</p>
+
+          <h2>G3X na Kings League</h2>
+          <ul>
+            <li><strong>2024:</strong> Estreia na Kings League Américas e chega à final do Mundial de Clubes (vice-campeão).</li>
+            <li><strong>2025:</strong> Disputa a Kings League Brasil (finalista de splits).</li>
+            <li><strong>2026:</strong> Campeão invicto da Kings World Cup Clubs em Milão (9×5 Alpak FC). Kelvin Oliveira artilheiro com 14 gols. Andreas Vaz eleito melhor jogador.</li>
+          </ul>
+
+          <h2>Kings Cup Brazil 2026</h2>
+          <p>Competição que começa em 19 de outubro de 2026. G3X FC completou o elenco no Draft de 3 de outubro, incluindo o espanhol Aleix Martí (artilheiro da Kings League Spain).</p>
+        </div>
+      </div>
+
+      <!-- ==================== CS2 ==================== -->
+      <div id="page-cs2" class="page">
+        <div class="content-page">
+          <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
+          <h1>🔫 Counter-Strike 2</h1>
+          <p class="subtitle">O FPS que move a Tribo</p>
+
+          <h2>Gaules e o CS</h2>
+          <p>Gaules começou no CS 1.6 como jogador profissional, fundou a g3x, foi técnico campeão mundial com a MIBR e se tornou o maior streamer de Counter-Strike do Brasil (e um dos maiores do mundo).</p>
+
+          <h2>Dream Team G3X (montado por Gaules em 2026)</h2>
+          <ul>
+            <li>Gabriel “FalleN” Toledo</li>
+            <li>Kaike “KSCERATO” Cerato</li>
+            <li>Felipe “insani” Yuji</li>
+            <li>Lucas “nqz” Soares</li>
+            <li>Vinicius “n1ssim” Pereira</li>
+          </ul>
+
+          <h2>Conteúdo da Tribo</h2>
+          <p>Transmissões diárias, análises, reações, guias de mapas, economia, callouts e a famosa resenha da cabine com Liminha, BT, Apoka, mch e Velho Vamp.</p>
+        </div>
+      </div>
+
+      <!-- ==================== GAULES ==================== -->
+      <div id="page-gaules" class="page">
+        <div class="content-page">
+          <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
+          <h1>🎙️ Gaules</h1>
+          <p class="subtitle">Alexandre Borba Chiqueta — O líder da Tribo</p>
+
+          <div class="info-box">
+            Nascido em 2 de dezembro de 1983 em São Paulo. Ex-jogador, técnico campeão mundial, maior streamer de CS do Brasil e presidente do G3X FC.
+          </div>
+
+          <h2>Trajetória</h2>
+          <ul>
+            <li>2001: Funda a g3nerationX</li>
+            <li>2007: Técnico da MIBR — primeiro título mundial brasileiro de CS</li>
+            <li>2018+: Explode como streamer e cria a maior comunidade de esports do Brasil — a Tribo</li>
+            <li>2024: Leva o G3X para o futebol 7</li>
+            <li>2026: G3X se torna campeão mundial da Kings League</li>
+          </ul>
+
+          <h2>Lema</h2>
+          <p><strong>“Nós somos o impossível”</strong> e <strong>“A Tribo cuida da Tribo”</strong>.</p>
+        </div>
+      </div>
+
+      <!-- ==================== UNIVERSO / COMUNIDADE ==================== -->
+      <div id="page-universo" class="page">
+        <div class="content-page">
+          <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
+          <h1>👥 Universo da Tribo</h1>
+          <p class="subtitle">Mais que um chat — uma família</p>
+
+          <h2>A Tribo</h2>
+          <p>A maior comunidade de esports do Brasil. Nascida nas lives do Gaules, uniu milhões de pessoas em torno de valores como resiliência, empatia e união. O lema “A Tribo cuida da Tribo” virou movimento social real.</p>
+
+          <h2>Figuras da Tribo</h2>
+          <ul>
+            <li><strong>Liminha</strong> — o eterno “pede Liminha”</li>
+            <li><strong>BT (Fillipe Moreno)</strong></li>
+            <li><strong>Apoka (Ale Apoka)</strong></li>
+            <li><strong>mch</strong></li>
+            <li><strong>Lett</strong></li>
+            <li><strong>Velho Vamp</strong> (técnico do G3X FC)</li>
+            <li>E milhões de mulas pelo Brasil e pelo mundo</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ==================== GLOSSÁRIO ==================== -->
+      <div id="page-glossario" class="page">
+        <div class="content-page">
+          <div class="back-btn" onclick="showPage('home')">← Voltar ao Início</div>
+          <h1>📖 Glossário & Bordões da Tribo</h1>
+          <p class="subtitle">O dicionário oficial das mulas</p>
+
+          <h2>Bordões clássicos</h2>
+          <ul>
+            <li><strong>A Tribo cuida da Tribo</strong> — lema maior. Usado em doações e apoio mútuo.</li>
+            <li><strong>Nós somos o impossível</strong> — frase oficial do Gaules e do G3X.</li>
+            <li><strong>Lei de Gaules</strong> — quando um time está no match point e não consegue fechar, levando para overtime.</li>
+            <li><strong>Lei de BT</strong> — o time que está ganhando começa a jogar mal e o que está perdendo melhora.</li>
+            <li><strong>Pede, Liminha</strong> — clássico pedido de apoio da torcida.</li>
+            <li><strong>Sapo cego</strong> — expressão famosa das lives.</li>
+            <li><strong>Eles nunca vão entender</strong> — sobre quem não entende a cultura da Tribo.</li>
+            <li><strong>Empurra Liminha</strong> — incentivo para a torcida.</li>
+          </ul>
+
+          <h2>Outros termos</h2>
+          <ul>
+            <li><strong>Mula</strong> — membro da Tribo</li>
+            <li><strong>Tribonera</strong> — a casa / a live</li>
+            <li><strong>Brasileirinho</strong> — carinho com o público brasileiro</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Right Sidebar (só aparece na home) -->
+    <aside class="sidebar-right" id="right-sidebar">
+      <div class="widget">
+        <div class="widget-title">🔥 Em destaque</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:#94a3b8;">Próximos jogos / Eventos</div>
+        <div class="match-item" onclick="showPage('kings')">
+          <div class="match-icon">⚽</div>
+          <div class="match-teams"><strong>Kings Cup Brazil</strong><br>Início da competição</div>
+          <div class="match-time">19 out<br>2026</div>
+        </div>
+        <div class="match-item" onclick="showPage('g3x')">
+          <div class="match-icon">🎮</div>
+          <div class="match-teams"><strong>G3X FC</strong> vs adversários<br>Kings Cup</div>
+          <div class="match-time">Out<br>2026</div>
+        </div>
+        <div class="match-item" onclick="showPage('cs2')">
+          <div class="match-icon">🔫</div>
+          <div class="match-teams"><strong>CS2</strong> — Transmissões<br>Gaules diárias</div>
+          <div class="match-time">Todos<br>os dias</div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">⭐ Artigos populares</div>
+        <div class="pop-item" onclick="showPage('g3x')">
+          <div class="pop-number">1</div>
+          <div>
+            <div>História completa do G3X</div>
+            <div class="pop-views">Do 1.6 ao título mundial</div>
+          </div>
+        </div>
+        <div class="pop-item" onclick="showPage('kings')">
+          <div class="pop-number">2</div>
+          <div>
+            <div>G3X Campeão Mundial 2026</div>
+            <div class="pop-views">9×5 Alpak em Milão</div>
+          </div>
+        </div>
+        <div class="pop-item" onclick="showPage('glossario')">
+          <div class="pop-number">3</div>
+          <div>
+            <div>Dicionário da Tribo</div>
+            <div class="pop-views">Bordões e gírias oficiais</div>
+          </div>
+        </div>
+        <div class="pop-item" onclick="showPage('g3x')">
+          <div class="pop-number">4</div>
+          <div>
+            <div>Elenco G3X Kings Cup 2026</div>
+            <div class="pop-views">Após o Draft</div>
+          </div>
+        </div>
+        <div class="pop-item" onclick="showPage('gaules')">
+          <div class="pop-number">5</div>
+          <div>
+            <div>Quem é Kelvin Oliveira (K9)</div>
+            <div class="pop-views">Presidente e artilheiro</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget-title">🔄 Últimas atualizações</div>
+        <div class="update-item" onclick="showPage('g3x')">
+          <div class="match-icon">⚽</div>
+          <div style="flex:1">
+            <strong>G3X</strong> — Draft Kings Cup finalizado
+            <div style="font-size:11px;color:#64748b;">out 2026</div>
+          </div>
+        </div>
+        <div class="update-item" onclick="showPage('kings')">
+          <div class="match-icon">🏆</div>
+          <div style="flex:1">
+            <strong>G3X FC</strong> — Campeão Mundial Kings League
+            <div style="font-size:11px;color:#64748b;">1 ago 2026</div>
+          </div>
+        </div>
+        <div class="update-item" onclick="showPage('cs2')">
+          <div class="match-icon">🎙️</div>
+          <div style="flex:1">
+            <strong>Gaules</strong> — Dream Team CS2 revelado
+            <div style="font-size:11px;color:#64748b;">abr 2026</div>
+          </div>
+        </div>
+        <div class="update-item" onclick="showPage('glossario')">
+          <div class="match-icon">📖</div>
+          <div style="flex:1">
+            <strong>Glossário</strong> — Novos bordões adicionados
+            <div style="font-size:11px;color:#64748b;">mar 2026</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div style="margin-bottom:8px;">
+      <strong>MulaPédia</strong> — Conhecimento de toda a Tribo
+    </div>
+    <div style="font-size:12px;opacity:0.75;max-width:600px;margin:0 auto;">
+      👑 Feita pela comunidade, para a comunidade.<br>
+      Conteúdo baseado em fatos reais até outubro de 2026.<br>
+      Projeto conceitual — não oficial.
+    </div>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      // Esconde todas as páginas
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      
+      // Mostra a página escolhida
+      const target = document.getElementById('page-' + pageId);
+      if (target) target.classList.add('active');
+
+      // Atualiza nav ativa
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageId) link.classList.add('active');
+      });
+
+      // Sidebar direita só na home
+      const rightSidebar = document.getElementById('right-sidebar');
+      if (rightSidebar) {
+        rightSidebar.style.display = (pageId === 'home') ? 'flex' : 'none';
+      }
+
+      // Scroll para o topo
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Inicia na home
+    showPage('home');
+  </script>
+
+</body>
+</html>
